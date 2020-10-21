@@ -5,6 +5,7 @@ package dream.first.base.model.interceptor;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
 import org.yelong.commons.util.Dates;
 import org.yelong.core.interceptor.Intercepts;
 import org.yelong.core.interceptor.Invocation;
@@ -67,10 +68,10 @@ public class ModifyModelInterceptor implements ModelServiceInterceptor {
 				userName = currentAuthUserInfo.getUser().getUsername();
 			}
 		}
-		if (null != baseModel.getUpdateTime()) {
+		if (null == baseModel.getUpdateTime()) {
 			baseModel.setUpdateTime(nowDate);
 		}
-		if (null != baseModel.getUpdator()) {
+		if (StringUtils.isBlank(baseModel.getUpdator())) {
 			baseModel.setUpdator(userName);
 		}
 		return invocation.proceed();

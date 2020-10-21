@@ -5,6 +5,7 @@ package dream.first.base.model.interceptor;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
 import org.yelong.commons.util.Dates;
 import org.yelong.core.interceptor.Intercepts;
 import org.yelong.core.interceptor.Invocation;
@@ -60,13 +61,13 @@ public class SaveModelInterceptor implements ModelServiceInterceptor {
 			}
 		}
 		Date nowDate = Dates.nowDate();
-		if (null != baseModel.getCreateTime()) {
+		if (null == baseModel.getCreateTime()) {
 			baseModel.setCreateTime(nowDate);
 		}
-		if (null != baseModel.getUpdateTime()) {
+		if (null == baseModel.getUpdateTime()) {
 			baseModel.setUpdateTime(nowDate);
 		}
-		if (null != baseModel.getState()) {
+		if (StringUtils.isBlank(baseModel.getState())) {
 			baseModel.setState(DreamFirstBaseModelState.YES.getCode());
 		}
 		String userName = SYSTEM_ADMIN_USER_NAME;
@@ -76,10 +77,10 @@ public class SaveModelInterceptor implements ModelServiceInterceptor {
 				userName = currentAuthUserInfo.getUser().getUsername();
 			}
 		}
-		if (null != baseModel.getCreator()) {
+		if (StringUtils.isBlank(baseModel.getCreator())) {
 			baseModel.setCreator(userName);
 		}
-		if (null != baseModel.getUpdator()) {
+		if (StringUtils.isBlank(baseModel.getUpdator())) {
 			baseModel.setUpdator(userName);
 		}
 		return invocation.proceed();
