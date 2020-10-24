@@ -23,7 +23,7 @@ import dream.first.base.utils.DreamFirstBaseModelIDGenerator;
 /**
  * 模型保存拦截器。模型保存时默认修改模型的创建人、创建时间等数据。
  * 
- * @since 2.1
+ * @since 2.0.1
  */
 @Intercepts({ @Signature(type = ModelService.class, method = "save", args = Modelable.class),
 		@Signature(type = ModelService.class, method = "saveSelective", args = Modelable.class) })

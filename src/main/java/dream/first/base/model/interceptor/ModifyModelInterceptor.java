@@ -26,7 +26,7 @@ import dream.first.base.userauth.CurrentAuthUserInfoHolder;
  * 修改模型拦截器。模型修改时统一修改模型的修改时间和修改人信息。修改人为当前登录人，修改时间为当前的时间。如果当前没有登录人信息，则为 system
  * 
  * @see CurrentAuthUserInfoHolder
- * @since 2.1
+ * @since 2.0.1
  */
 @Intercepts({
 		@Signature(type = ModelService.class, method = "modifyBySqlFragment", args = { Modelable.class,

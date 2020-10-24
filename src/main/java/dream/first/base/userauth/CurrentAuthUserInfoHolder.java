@@ -57,6 +57,15 @@ public final class CurrentAuthUserInfoHolder {
 	}
 
 	/**
+	 * @return 当前登录/请求人用户信息
+	 */
+	@Nullable
+	public static String getCurrentLoginUserId() {
+		BaseUser user = getCurrentLoginUser();
+		return null == user ? null : user.getId();
+	}
+
+	/**
 	 * @return 当前登录/请求人的用户名称(账号)
 	 */
 	@Nullable
